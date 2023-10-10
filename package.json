@@ -2,17 +2,18 @@
   "name": "task-ts-assignment",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "build": "npx tsc",
-    "start": "node dist/server.ts",
-    "dev": "nodemon server.ts",
+    "start": "node dist/index.ts",
+    "dev": "nodemon server/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
