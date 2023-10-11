@@ -8,7 +8,19 @@
 
 # Environment Setup
 
-After confirming the versions on your local machine, you will need to run the following command:
+Starting from cloning the repository by the following command:
+
+```
+git clone git@github.com:abid-mahmood/node-assignment.git
+```
+
+or using HTTPS (if you haven't added your SSH):
+```
+git clone https://github.com/abid-mahmood/node-assignment.git
+```
+
+
+After confirming the versions on your local machine and cloning the repository to the local, you will need to run the following command:
 
 ```
 npm run install
