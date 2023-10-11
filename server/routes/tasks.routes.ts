@@ -1,8 +1,12 @@
 import { Application } from "express";
-import { tasks } from "../../app/contollers"
+import { tasks } from "../../app/contollers";
+
+// import auth from "../../middleware/auth";
 
 const tasksRoutes = (app: Application) => {
   app.get("/tasks", tasks.findAll);
+
+  // app.get("/tasks", auth, tasks.findAll); route needs authentication
 
   app.post("/tasks", tasks.create);
 
