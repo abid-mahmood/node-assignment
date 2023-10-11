@@ -7,7 +7,7 @@ describe("Task Creation", () => {
     await request(app).delete("/tasks/reset/all");
   });
 
-  it("returns the error if no data found in the request", async () => {
+  it("returns the error if no task data found in the request", async () => {
     const res = await request(app).post("/tasks");
     expect(res.body).toEqual({ error: "Please provide the contents for task" });
   });
@@ -55,7 +55,7 @@ describe("Task Fetch", () => {
     expect(res.body.task.id).toEqual(task1.id);
   });
 
-  it("returns error if no task found with an ID", async () => {
+  it("returns the error if no task found with the given ID", async () => {
     const res = await request(app).get(`/tasks/20`);
 
     expect(res.body.message).toEqual("Task not found");

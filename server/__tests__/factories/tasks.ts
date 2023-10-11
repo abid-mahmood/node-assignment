@@ -6,8 +6,8 @@ const create = ({
   assignedTo = "John",
   category = "test",
   status = Status.pending,
-  creationDate = "12-Oct-2023",
-  dueDate = "15-Oct-2023",
+  creationDate = new Date().toISOString(),
+  dueDate = "16-Oct-2023",
 }: Task): Task => ({
   id: Math.floor(Math.random() * 100),
   title,
