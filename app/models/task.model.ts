@@ -1,36 +1,30 @@
-import { Task as ITask } from "../types"
+import { Task as ITask, TaskAction } from "../types"
 
 class Task {
-  static tasks: ITask[] = [];
+  private static tasks: ITask[] = [];
 
-  static addTask(task: ITask): boolean {
-    this.tasks.push(task);
+  static addTask(task: ITask): TaskAction {
+    this.tasks.push({ ...task });
 
     return true;
   }
 
-  static getTask(taskId: number): ITask | {} {
-    const task = this.tasks.find((task: ITask) => task.id === taskId);
-    return task || {};
-  }
-
-  static deleteTask(taskId: number): boolean {
-    const task = this.tasks.find((task: ITask) => task.id === taskId);
-
-    if (task) return true;
-    return false;
-  }
-
-  static getTasks(whereCondition?: (task: ITask) => {}): ITask[] {
+  static getTasks(whereCondition?: (task: ITask) => void): TaskAction {
     return whereCondition
       ? this.tasks.filter(whereCondition)
       : this.tasks;
   }
 
-  static updateTask(task: ITask): ITask {
+  static getTask(taskId: number): TaskAction {
+    return this.tasks.find((task: ITask) => task.id === taskId) || null;
+  }
+
+  static updateTask(task: ITask): TaskAction {
+    let updatedTask: ITask = task;
+
     this.tasks = this.tasks.map((currentTask: ITask) => {
       if (Number(currentTask.id) === Number(task.id)) {
-        const updatedTask = {
+        updatedTask = {
           ...currentTask,
           ...task,
         };
@@ -41,7 +35,21 @@ class Task {
       }
     });
 
-    return task;
+    return updatedTask;
+  }
+
+  static deleteTask(taskId: number): TaskAction {
+    const updatedTasks = this.tasks.filter((task: ITask) => task.id !== taskId);
+
+    if (updatedTasks.length !== this.tasks.length) {
+      this.tasks = updatedTasks;
+      return true;
+    }
+    return false;
+  }
+
+  static reset() {
+    this.tasks = [];
   }
 }
 

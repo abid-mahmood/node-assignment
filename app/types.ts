@@ -14,6 +14,21 @@ interface Task {
   status: Status;
 }
 
+type GetTask = Task | null;
+type AddTask = boolean;
+type DeleteTask = boolean;
+type GetTasks = Task[];
+type UpdateTask = Task;
+
+type TaskAction =
+    GetTask
+  | AddTask
+  | DeleteTask
+  | GetTasks
+  | UpdateTask;
+
 export {
   Task,
+  TaskAction,
+  Status,
 }
